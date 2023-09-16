@@ -1,5 +1,6 @@
 import "./globals.css";
 import type { Metadata } from "next";
+import Provider from "@/components/Provider";
 
 export const metadata: Metadata = {
   title: "Chat App",
@@ -13,9 +14,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="bg-stone-100 flex items-center justify-center h-screen">
-        {children}
-      </body>
+      <Provider>
+        <body className="bg-stone-100 flex items-center justify-center h-screen">
+          {children}
+        </body>
+      </Provider>
     </html>
   );
 }

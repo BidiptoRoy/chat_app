@@ -1,12 +1,17 @@
-import React from "react";
+"use client";
+
+import React, { useState } from "react";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import PersonAddIcon from "@mui/icons-material/PersonAdd";
 import GroupAddIcon from "@mui/icons-material/GroupAdd";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
 import SearchIcon from "@mui/icons-material/Search";
-import { IconButton } from "@mui/material";
+import { Button, IconButton } from "@mui/material";
 import Chat from "./Chat";
+import { useSession, signOut } from "next-auth/react";
+import Image from "next/image";
+import LogoutIcon from "@mui/icons-material/Logout";
 
 const friends = [
   {
@@ -32,12 +37,26 @@ const friends = [
 ];
 
 function SideBar() {
+  const { data: session } = useSession();
+
   return (
     <div className="w-1/4 ml-2 my-2 rounded-l-2xl flex flex-col">
       <div className="bg-stone-100 rounded-lg p-1 flex flex-row justify-between drop-shadow">
         <div>
           <IconButton>
-            <AccountCircleIcon />
+            {session?.user ? (
+              <div className="relative z-40">
+                <Image
+                  src={session.user.image ? session.user.image : ""}
+                  alt={"Profile Picture"}
+                  width={32}
+                  height={32}
+                  className="rounded-full"
+                />
+              </div>
+            ) : (
+              <AccountCircleIcon />
+            )}
           </IconButton>
         </div>
         <div>
@@ -52,6 +71,9 @@ function SideBar() {
           </IconButton>
           <IconButton>
             <DarkModeIcon />
+          </IconButton>
+          <IconButton>
+            <LogoutIcon onClick={() => signOut()} />
           </IconButton>
         </div>
       </div>
