@@ -34,7 +34,10 @@ function Login() {
 
   console.log(session);
   return (
-    <div className="bg-gradient-to-r from-cyan-300/70 via-stone-100 to-amber-200/70 h-screen w-full flex flex-col items-center justify-center">
+    <div
+      className="bg-gradient-to-r from-cyan-300/70 via-stone-100 to-amber-200/70
+     h-full w-full flex flex-col items-center justify-center"
+    >
       <h1 className="text-3xl font-semibold font-sans">Welcome to Chat App</h1>
       <img src="logo.png" height="232px" width="232px" />
       {providers &&

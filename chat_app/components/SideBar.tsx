@@ -38,7 +38,7 @@ const friends = [
 
 function SideBar() {
   const { data: session } = useSession();
-
+  if (!session) return <div></div>;
   return (
     <div className="w-1/4 ml-2 my-2 rounded-l-2xl flex flex-col">
       <div className="bg-stone-100 rounded-lg p-1 flex flex-row justify-between drop-shadow">
