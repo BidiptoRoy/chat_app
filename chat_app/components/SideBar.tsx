@@ -12,6 +12,7 @@ import Chat from "./Chat";
 import { useSession, signOut } from "next-auth/react";
 import Image from "next/image";
 import LogoutIcon from "@mui/icons-material/Logout";
+import { useRouter } from "next/navigation";
 
 const friends = [
   {
@@ -37,6 +38,7 @@ const friends = [
 ];
 
 function SideBar() {
+  const router = useRouter();
   const { data: session } = useSession();
   if (!session) return <div></div>;
   return (
@@ -60,13 +62,25 @@ function SideBar() {
           </IconButton>
         </div>
         <div>
-          <IconButton>
+          <IconButton
+            onClick={() => {
+              router.push("/users");
+            }}
+          >
             <PersonAddIcon />
           </IconButton>
-          <IconButton>
+          <IconButton
+            onClick={() => {
+              router.push("/groups");
+            }}
+          >
             <GroupAddIcon />
           </IconButton>
-          <IconButton>
+          <IconButton
+            onClick={() => {
+              router.push("/create-group");
+            }}
+          >
             <AddCircleIcon />
           </IconButton>
           <IconButton>
@@ -89,7 +103,7 @@ function SideBar() {
       <div className="bg-stone-100 rounded-lg p-1 flex flex-col mt-2 flex-grow overflow-y-auto drop-shadow">
         <ul className="divide-y divide-stone-800/50 px-2">
           {friends.map((friend) => (
-            <Chat friend={friend} />
+            <Chat friend={friend} key={friend.name} />
           ))}
         </ul>
       </div>

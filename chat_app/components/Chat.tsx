@@ -1,6 +1,15 @@
+"use client";
+import { useRouter } from "next/navigation";
+
 function Chat({ friend }: any) {
+  const router = useRouter();
   return (
-    <div className="flex flex-row w-full hover:bg-slate-300 rounded-md p-1">
+    <div
+      className="flex flex-row w-full hover:bg-slate-300 rounded-md p-1"
+      onClick={() => {
+        router.push("/chats");
+      }}
+    >
       <div className="flex justify-center items-center">
         <p className="font-mono text-2xl font-extrabold bg-slate-600/30 rounded-[50%] h-8 w-8 justify-self-center p-2 flex justify-center items-center">
           {friend.name[0]}

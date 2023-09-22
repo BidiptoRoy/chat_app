@@ -22,6 +22,14 @@
       "@/*": ["./*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    ".next/types/app/UserGroups/page.tsx",
+    ".next/types/app/UsersOnline/page.tsx",
+    ".next/types/app/CreateGroup/page.tsx"
+  ],
   "exclude": ["node_modules"]
 }
